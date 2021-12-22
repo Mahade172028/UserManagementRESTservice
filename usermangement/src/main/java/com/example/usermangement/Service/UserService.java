@@ -3,6 +3,9 @@ package com.example.usermangement.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.usermangement.Entity.Response;
@@ -126,6 +129,17 @@ public class UserService
 		
 		return response;
 	}
+	
+	
+	//GEING ALL USER BY PAGING 
+	public Page<User> getAllUserPaging(int pageNumber,int pageSize)
+	{
+		Pageable pagin=PageRequest.of(pageNumber, pageSize);
+		Page<User> users=userRepository.findAll(pagin);
+		
+		return users;
+	}
+	
 	
 
 }
